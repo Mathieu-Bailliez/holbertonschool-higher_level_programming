@@ -1,6 +1,8 @@
 #!/usr/bin/python3
-"""Displays states whose name matches the user-provided argument.
-in a safe ways
+"""
+Lists all cities from the database hbtn_0e_4_usa
+First Table : Cities
+Second Table: States
 """
 
 import sys
