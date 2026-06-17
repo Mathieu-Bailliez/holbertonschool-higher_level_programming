@@ -3,7 +3,7 @@
 
 This module defines a basic HTTP server that responds to GET requests
 on four endpoints: '/', '/data', '/status', and '/info'. Any other
-endpoint returns a 404 error with a JSON message.
+endpoint returns a 404 error with a plain text message.
 
 Classes:
     SimpleAPIHandler: Handles incoming GET requests and routes them
@@ -16,6 +16,7 @@ import json
 
 class SimpleAPIHandler(BaseHTTPRequestHandler):
     """Handle HTTP GET requests for the simple API server."""
+
     def do_GET(self):
         """Handle GET requests and dispatch a response based on self.path."""
         if self.path == "/":
@@ -49,14 +50,12 @@ class SimpleAPIHandler(BaseHTTPRequestHandler):
 
         else:
             self.send_response(404)
-            self.send_header("Content-type", "application/json")
+            self.send_header("Content-type", "text/plain")
             self.end_headers()
-            error_response = {"error": "Endpoint not found"}
-            self.wfile.write(json.dumps(error_response).encode())
+            self.wfile.write(b"Endpoint not found")
 
 
 if __name__ == "__main__":
     server = HTTPServer(("localhost", 8000), SimpleAPIHandler)
     print("Server running on port 8000")
     server.serve_forever()
-
