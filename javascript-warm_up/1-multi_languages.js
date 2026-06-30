@@ -1,7 +1,6 @@
 #!/usr/bin/node
-//#!/usr/bin/env node
 
-let langage = 'C is fun';
+//let langage = 'C is fun';
 console.log(langage);
 langage = 'Python is cool';
 console.log(langage);
